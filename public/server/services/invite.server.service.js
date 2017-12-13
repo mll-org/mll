@@ -74,7 +74,7 @@ module.exports = function (app) {
 		function proceed to them schedule the message for delivery.
 		Information is printed to screen through the use of console.log(...)
 		*/
-		api.AdministrationUsersCurrent(function (http_code, response) {
+		api.get('/administration/users/current', function (http_code, response) {
 			if (http_code===200) {
 				AccountId=response.AccountId; //extracts account GUID from response obj
 				console.log("Success!  Account GUID: " + AccountId); //prints out the Account GUID
