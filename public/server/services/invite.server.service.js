@@ -76,10 +76,12 @@ module.exports = function (app) {
 		*/
 		api.get('/administration/users/current', function (http_code, response) {
 			if (http_code===200) {
-				AccountId=response.AccountId; //extracts account GUID from response obj
+				console.log(response);
+				console.log("AccID: "+ response.AccountId);
+				var accountId = response.AccountId; //extracts account GUID from response obj
 				console.log("Success!  Account GUID: " + AccountId); //prints out the Account GUID
 				//Next Function sends the message
-				api.easySmtpDelivery(AccountId, jsonBody, function (http_code, response) {
+				api.post ("/easysmtp/" + accountId, jsonBody, function (http_code, response) {
 					if (http_code===200) {
 						console.log("successful connection to EasySMTP API");
 						console.log(response);
