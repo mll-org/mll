@@ -30,7 +30,8 @@
         this.invite = () => {
             var user = {
                 name : $scope.email.name,
-                email : $scope.email.to
+                email : $scope.email.to,
+				messageBody: this.messageBody
             };
 
             InviteService
