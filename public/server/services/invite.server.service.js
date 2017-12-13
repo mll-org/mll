@@ -7,12 +7,23 @@ module.exports = function (app) {
     app.get('/api/invitees', getInviteeList);
     app.put('/api/user/accept', markUserAcceptance);
 
-    var con = mysql.createConnection({
+    /*var con = mysql.createConnection({
         host: "localhost",
         user: "sneha",
         password: "abcd1234",
         database: "mlldb"
-    });
+    });*/
+	
+	var con = mysql.createConnection({
+		//host: "localhost",
+		host: "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+		//user: "sneha",
+		//password: "abcd1234",
+		user: "aav997830lee8hcc",
+		password: "c9le739ttx5bv8j8",
+		//database: "mlldb",
+		database: "gg0kuw6i240upzen"
+	});
 
     con.connect(function(err) {
         if (err) throw err;
