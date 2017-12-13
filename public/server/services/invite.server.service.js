@@ -72,7 +72,7 @@ module.exports = function (app) {
         console.log(user.password);
         con.query('UPDATE user\n' +
             'SET role = \'musician\'' +
-            'WHERE name = ? and email = ? and password = ?;', [user.name, user.email, user.password], function(err, result) {
+            'WHERE name = ? and email = ?;', [user.name, user.email], function(err, result) {
             if (err) throw err;
             res.send(result);
         });
