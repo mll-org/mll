@@ -67,7 +67,7 @@ module.exports = function (app) {
 			Tracking: true
 		};
 		//JSON encode the message body for transmission
-		jsonBody = JSON.stringify(body);
+		var jsonBody = JSON.stringify(body);
 
 		/* 
 		The function below retreieves the account GUID. Only when succefful will the 
