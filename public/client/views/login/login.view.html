@@ -1,0 +1,95 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="alert alert-success alert-dismissable fade in" ng-if="registerSuccess">
+            <strong>Success!</strong> You have been registered successfully. Now you can login.
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            <img src="client/images/NeuLogo.jpg" class="img-responsive nuLogo" alt="neuLogoAppearsHere"/>
+        </div>
+        <div class="col-md-10">
+            <h2>Media Licensing Lab
+                <br>
+                <small class="italic-font headingcolor">Student-run music licensing project</small>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 panel panel-info no-padding">
+            <div class="panel-heading">
+                <h3 class="text-center no-margin">Login</h3>
+            </div>
+            <div class="card card-container">
+                <img id="profile-img" class="profile-img-card"
+                     src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
+                <div class="row">
+                    <div class="login-panel col-lg-12">
+                        <form name="ctrl.loginForm" class="form-horizontal" novalidate>
+                            <div class="form-group"
+                                 ng-class="{ 'has-success': ctrl.loginForm.email.$valid && ctrl.loginForm.$submitted,
+                     'has-error': ctrl.loginForm.$invalid && ctrl.loginForm.$submitted }">
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <div class="input-group">
+                                <span class="input-group-addon"><i
+                                        class="fa fa-user fa-fw"></i></span> <input type="text"
+                                                                                    name="emailId" class="form-control" placeholder="Email"
+                                                                                    ng-model="ctrl.username" required />
+                                    </div>
+
+                                    <div class="alert alert-danger" role="alert"
+                                         ng-show="ctrl.loginForm.emailId.$invalid && ctrl.loginForm.$submitted">
+                                <span class="glyphicon glyphicon-exclamation-sign"
+                                      aria-hidden="true"></span> <span
+                                            ng-show="ctrl.loginForm.emailId.$error.required">
+                                    Please, provide a user name! </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group has-feedback"
+                                 ng-class="{ 'has-success': ctrl.loginForm.password.$valid && ctrl.loginForm.$submitted,
+                     'has-error': ctrl.loginForm.password.$invalid && ctrl.loginForm.$submitted }">
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <div class="input-group">
+                                <span class="input-group-addon"><i
+                                        class="fa fa-key fa-fw"></i></span> <input type="password"
+                                                                                   name="password" class="form-control" id="login-password"
+                                                                                   ng-model="ctrl.data.password" placeholder="Password"
+                                                                                   ng-minlength="8" required />
+                                    </div>
+                                    <div class="alert alert-danger" role="alert"
+                                         ng-show="ctrl.loginForm.password.$invalid && ctrl.loginForm.$submitted">
+                                <span class="glyphicon glyphicon-exclamation-sign"
+                                      aria-hidden="true"></span> <span
+                                            ng-show="ctrl.loginForm.password.$error.required">
+                                    Please, provide a password! </span> <span
+                                            ng-show="ctrl.loginForm.password.$error.minlength">
+                                    Please, provide a password with at least 8 symbols! </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <div class="alert alert-danger" role="alert"
+                                         ng-show="ctrl.loginForm.$serverError">
+                                <span class="glyphicon glyphicon-exclamation-sign"
+                                      aria-hidden="true"></span> <span ng-bind="ctrl.errorMessage"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-xs-10 col-xs-offset-1">
+                                    <button class="btn btn-block btn-primary"
+                                            ng-click="ctrl.login(user)">Log In</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

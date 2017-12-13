@@ -1,0 +1,21 @@
+<div class="container-fluid">
+    <h2>Musicians who have invited</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="musician in musicians">
+                <th scope="row">{{ $index }}</th>
+                <td>{{ musician.name }}</td>
+                <td><span ng-class="{'btn btn-success' : musician.role === 'musician',
+                                    'btn btn-warning' : musician.role === 'invitee'}">
+                    {{ musician.role }}</span></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

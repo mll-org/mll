@@ -1,0 +1,113 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <img src="client/images/NeuLogo.jpg" class="img-responsive nuLogo" alt="neuLogoAppearsHere"/>
+        </div>
+        <div class="col-md-10">
+            <h2>Media Licensing Lab
+                <br>
+                <small class="italic-font headingcolor">Student-run music licensing project</small>
+            </h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-10 well">
+            <h3 class="text-center no-margin">Registration</h3>
+        </div>
+    </div>
+    <div class="row">
+        <form name="ctrl.registrationForm" class="form-horizontal" novalidate>
+            <div class="form-group has-feedback"
+                 ng-class="{ 'has-success': ctrl.registrationForm.email.$valid && ctrl.registrationForm.$submitted,
+                         'has-error': ctrl.registrationForm.email.$invalid && ctrl.registrationForm.$submitted }">
+                <div class="col-xs-10">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa"></i></span>
+                        <input type="text" name="name" ng-model="ctrl.fullname" class="form-control" placeholder="Full name" required>
+                    </div>
+                    <br/>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
+                        <input type="email" name="email" class="form-control" ng-model="ctrl.email"
+                               placeholder="Email Address" required />
+                    </div>
+                    <div class="alert alert-danger" role="alert"
+                         ng-show="ctrl.registrationForm.email.$invalid && ctrl.registrationForm.$submitted">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="ctrl.registrationForm.email.$error.required">
+                        Please, provide an email address!
+                    </span>
+                        <span ng-show="ctrl.registrationForm.email.$error.email">
+                        Please, provide a valid email address!
+                    </span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5">
+                    <div class="form-group has-feedback"
+                         ng-class="{ 'has-success': ctrl.registrationForm.password.$valid && ctrl.registrationForm.$submitted,
+                                 'has-error': ctrl.registrationForm.password.$invalid && ctrl.registrationForm.$submitted }">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                <input type="password" name="password" class="form-control" ng-model="ctrl.password"
+                                       placeholder="Password" required />
+                            </div>
+                            <div class="alert alert-danger" role="alert"
+                                 ng-show="ctrl.registrationForm.password.$invalid && ctrl.registrationForm.$submitted">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span ng-show="ctrl.registrationForm.password.$error.required">
+                                 Please, provide a password!
+                             </span>
+                                <span ng-show="ctrl.registrationForm.password.$error.minlength">
+                                 Please, provide a password that consists from, at least, 8 symbols!
+                             </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-5">
+                    <div class="form-group has-feedback"
+                         ng-class="{ 'has-success': ctrl.registrationForm.confPassword.$valid && ctrl.registrationForm.$submitted,
+                                 'has-error': ctrl.registrationForm.confPassword.$invalid && ctrl.registrationForm.$submitted }">
+                        <div class="col-xs-12">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                                <input type="password" name="confPassword" class="form-control" ng-model="ctrl.confPassword"
+                                       placeholder="Password Confirmation" ng-minlength="8" required
+                                       mll-input-match="ctrl.data.password" />
+                            </div>
+                            <div class="alert alert-danger" role="alert"
+                                 ng-show="ctrl.registrationForm.confPassword.$invalid && ctrl.registrationForm.$submitted">
+                                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                                <span ng-show="ctrl.registrationForm.confPassword.$error.required">
+                                 Please, provide a password confirmation!
+                             </span>
+                                <span ng-show="ctrl.registrationForm.confPassword.$error.minlength">
+                                 Please, provide a password confirmation that consists from, at least, 8 symbols!
+                             </span>
+                                <span ng-show="ctrl.registrationForm.confPassword.$error.inputmatch">
+                                 Please, provide a password confirmation that matches your password!
+                             </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10">
+                    <div class="alert alert-danger" role="alert" ng-show="ctrl.registrationForm.$serverError">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-bind="ctrl.errorMessage"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-10">
+                    <button  class="btn btn-primary btn-block" ng-click="ctrl.register()">Register</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

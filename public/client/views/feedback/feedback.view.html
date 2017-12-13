@@ -1,0 +1,30 @@
+<form name="ctrl.ownerForm" class="form-horizontal form-tab" autocomplete="on" novalidate>
+    <legend>FEEDBACK FORM </legend>
+    <ng-form name="feedbackForm">
+        <div class="form-group has-feedback"
+             ng-class="{ 'has-success': feedbackForm.name.$valid && ctrl.ownerForm.$submitted,
+                             'has-error': feedbackForm.name.$invalid && ctrl.ownerForm.$submitted }">
+            <label class="col-xs-3 asterisk-label">Feedback</label>
+
+            <div class="col-xs-7">
+                <textarea name="name" class="form-control"
+                          ng-model="ctrl.data.feedbackString" required></textarea>
+
+                <div class="alert alert-danger" role="alert"
+                     ng-show="feedbackForm.name.$invalid && ctrl.ownerForm.$submitted">
+					<span class="glyphicon glyphicon-exclamation-sign"
+                          aria-hidden="true"></span> <span
+                        ng-show="feedbackForm.name.$error.required"> Please, provide
+						a feedback </span>
+                </div>
+            </div>
+        </div>
+    </ng-form>
+    <div class="form-group">
+        <div class="col-xs-3">
+            <button class="btn btn-block btn-primary" ng-disabled="!ctrl.data.feedbackString" ng-click="ctrl.submit(ctrl.data)">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

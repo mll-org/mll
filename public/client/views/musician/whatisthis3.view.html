@@ -1,0 +1,120 @@
+<form name="ctrl.ownerForm" class="form-horizontal form-tab" autocomplete="on" novalidate>
+
+    <legend>ADD BAND</legend>
+    <ng-form name="bandNameForm">
+        <div class="form-group has-feedback"
+             ng-class="{ 'has-success': bandNameForm.name.$valid && ctrl.ownerForm.$submitted,
+                             'has-error': bandNameForm.name.$invalid && ctrl.ownerForm.$submitted }">
+            <label class="col-xs-3 asterisk-label">Band Name</label>
+
+            <div class="col-xs-7">
+                <input type="text" name="name" class="form-control"
+                       ng-model="ctrl.data.ownershipInformation.bandName" required/>
+
+                <div class="alert alert-danger" role="alert"
+                     ng-show="bandNameForm.name.$invalid && ctrl.ownerForm.$submitted">
+					<span class="glyphicon glyphicon-exclamation-sign"
+                          aria-hidden="true"></span> <span
+                        ng-show="bandNameForm.name.$error.required"> Please, provide
+						a band name! </span>
+                </div>
+            </div>
+        </div>
+    </ng-form>
+
+
+    <div ng-repeat="songwriter in ctrl.data.ownershipInformation.songwriters">
+        <ng-form name="writerForm">
+            <legend class="inner-legend">
+                Member
+                <small ng-show="$index">&nbsp;#{{$index + 1}}</small>
+            </legend>
+
+            <!--For the first name-->
+            <div class="form-group has-feedback"
+                 ng-class="{ 'has-success': writerForm.firstName.$valid && ctrl.ownerForm.$submitted,
+                             'has-error': writerForm.firstName.$invalid && ctrl.ownerForm.$submitted }">
+                <label class="col-xs-3 asterisk-label">Musician First Name</label>
+
+                <div class="col-xs-7">
+                    <input type="text" name="firstName" class="form-control"
+                           ng-model="songwriter.firstName" required/>
+
+                    <div class="alert alert-danger" role="alert"
+                         ng-show="writerForm.firstName.$invalid && ctrl.ownerForm.$submitted">
+					<span class="glyphicon glyphicon-exclamation-sign"
+                          aria-hidden="true"></span> <span
+                            ng-show="writerForm.firstName.$error.required"> Please, provide
+						an Musician First Name! </span>
+                    </div>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a class="btn btn-danger" ng-show="$index"
+                       ng-click="ctrl.removeWriter($index)"> <span
+                            class="glyphicon glyphicon-trash"></span>
+                    </a> <a class="btn btn-success" ng-click="ctrl.addWriter()"> <span
+                        class="glyphicon glyphicon-plus-sign"></span>
+                </a>
+                </div>
+            </div>
+
+            <!--For the last name-->
+            <div class="form-group has-feedback"
+                 ng-class="{ 'has-success': writerForm.lastName.$valid && ctrl.ownerForm.$submitted,
+                             'has-error': writerForm.lastName.$invalid && ctrl.ownerForm.$submitted }">
+                <label class="col-xs-3 asterisk-label">Musician Last Name</label>
+
+                <div class="col-xs-7">
+                    <input type="text" name="lastName" class="form-control"
+                           ng-model="songwriter.lastName" required/>
+
+                    <div class="alert alert-danger" role="alert"
+                         ng-show="writerForm.lastName.$invalid && ctrl.ownerForm.$submitted">
+					<span class="glyphicon glyphicon-exclamation-sign"
+                          aria-hidden="true"></span> <span
+                            ng-show="writerForm.lastName.$error.required"> Please, provide
+						an song writer name! </span>
+                    </div>
+                </div>
+            </div>
+
+            <!--For the musician roles-->
+            <div class="form-group has-feedback"
+                 ng-class="{ 'has-success': writerForm.musicianRole.$valid && ctrl.ownerForm.$submitted,
+                             'has-error': writerForm.musicianRole.$invalid && ctrl.ownerForm.$submitted }">
+                <label class="col-xs-3 asterisk-label">Musician Role <span
+                        class="glyphicon glyphicon-question-sign"
+                        uib-tooltip="Tooltip to be added"></span>
+                </label>
+
+                <div class="col-xs-7">
+                    <select name="musicianRole" class="form-control"
+                            ng-model="songwriter.musicianRole"
+                            ng-options="role for role in ctrl.musicianRoles"
+                            ng-change="ctrl.selectRole(role)" required>
+                        <option value="">Select Role...</option>
+                    </select>
+
+
+                    <div class="alert alert-danger" role="alert"
+                         ng-show="ctrl.ownerForm.musicianRole.$invalid && ctrl.ownerForm.$submitted">
+					<span class="glyphicon glyphicon-exclamation-sign"
+                          aria-hidden="true"></span> <span
+                            ng-show="ctrl.ownerForm.musicianRole.$error.required">
+						Please, select a role! </span>
+                    </div>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+        <div class="col-xs-3">
+            <button class="btn btn-block btn-primary" ng-click="ctrl.submit(ctrl.data)">
+                Save
+            </button>
+        </div>
+    </div>
+</form>

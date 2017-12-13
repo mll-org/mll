@@ -1,0 +1,135 @@
+<form name="ctrl.generalForm" class="form-horizontal form-tab" novalidate>
+    <legend>General Information</legend>
+
+    <div ng-repeat="artist in ctrl.data.artists">
+        <ng-form name="artistForm">
+            <div class="form-group has-feedback"
+                 ng-class="{ 'has-success': artistForm.artist.$valid && ctrl.generalForm.$submitted,
+                             'has-error': artistForm.artist.$invalid && ctrl.generalForm.$submitted }">
+                <label class="col-xs-3 asterisk-label">Artist/Band&nbsp;<span ng-show="$index">#{{$index + 1}}</span></label>
+                <div class="col-xs-7">
+                    <input type="text" name="artist" class="form-control" ng-model="artist.name" required />
+                    <div class="alert alert-danger" role="alert"
+                         ng-show="artistForm.artist.$invalid && ctrl.generalForm.$submitted">
+                        <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                        <span ng-show="artistForm.artist.$error.required">
+                            Please, provide an artist/band name!
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-2 text-right">
+                    <a class="btn btn-danger" ng-show="$index" ng-click="ctrl.removeArtist($index)">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a class="btn btn-success" ng-click="ctrl.addArtist()">
+                        <span class="glyphicon glyphicon-plus-sign"></span>
+                    </a>
+                </div>
+            </div>
+        </ng-form>
+    </div>
+
+    <hr />
+
+    <div class="form-group has-feedback"
+         ng-class="{ 'has-success': ctrl.generalForm.title.$valid && ctrl.generalForm.$submitted,
+                     'has-error': ctrl.generalForm.title.$invalid && ctrl.generalForm.$submitted }">
+        <label for="general-title" class="col-xs-3 asterisk-label">
+            Recording Title
+        </label>
+        <div class="col-xs-9">
+            <input type="text" name="title" class="form-control" id="general-title"
+                   ng-model="ctrl.data.title" required autofocus />
+            <div class="alert alert-danger" role="alert"
+                 ng-show="ctrl.generalForm.title.$invalid && ctrl.generalForm.$submitted">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span ng-show="ctrl.generalForm.title.$error.required">
+                    Please, provide a recording title!
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="form-group">
+        <label class="col-xs-3">
+            Recording Owned By <span class="glyphicon glyphicon-question-sign" uib-tooltip="Tooltip to be added"></span>
+        </label>
+        <div class="col-xs-9">
+            <select name="trackType" class="form-control" ng-model="ctrl.data.ownerType"
+                    ng-options="ownerType for ownerType in ctrl.ownerTypes"
+                    ng-change="ctrl.selectOwnerType(ownerType)">
+                <option value="">Select Owner...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-3">
+            Type of Track <span class="glyphicon glyphicon-question-sign" uib-tooltip="Tooltip to be added"></span>
+        </label>
+        <div class="col-xs-9">
+            <select name="trackType" class="form-control" ng-model="ctrl.data.trackType"
+                    ng-options="trackType for trackType in ctrl.trackTypes">
+                <option value="">Select Track Type...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-xs-3">
+            Instruments on Track
+        </label>
+        <div class="col-xs-9">
+            <div class="col-xs-4" ng-repeat="contribution in ctrl.contributionTypes">
+                <input type="checkbox" value="{{contribution}}"
+                       ng-checked="selection.indexOf(contribution) > -1"
+                       ng-click="ctrl.toggleContribution(contribution)">
+                {{contribution}}
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group has-feedback"
+         ng-class="{ 'has-success': ctrl.generalForm.primaryGenre.$valid && ctrl.generalForm.$submitted,
+                     'has-error': ctrl.generalForm.primaryGenre.$invalid && ctrl.generalForm.$submitted }">
+        <label class="col-xs-3 asterisk-label">
+            Primary Genre <span class="glyphicon glyphicon-question-sign" uib-tooltip="Tooltip to be added"></span>
+        </label>
+        <div class="col-xs-9">
+            <select name="primaryGenre" class="form-control" ng-model="ctrl.data.primaryGenre"
+                    ng-options="genre for genre in ctrl.genres">
+                <option value="">Select Genre...</option>
+            </select>
+            <div class="alert alert-danger" role="alert"
+                 ng-show="ctrl.generalForm.primaryGenre.$invalid && ctrl.generalForm.$submitted">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span ng-show="ctrl.generalForm.primaryGenre.$error.required">
+                    Please, select a genre!
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group" ng-show="ctrl.data.primaryGenre">
+        <label class="col-xs-3">
+            Secondary Genre <span class="glyphicon glyphicon-question-sign" uib-tooltip="Tooltip to be added"></span>
+        </label>
+        <div class="col-xs-9">
+            <select name="secondaryGenre" class="form-control" ng-model="ctrl.data.secondaryGenre"
+                    ng-options="genre for genre in ctrl.genres">
+                <option value="">Select Genre...</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <!--   <div class="col-xs-3 col-xs-offset-6">
+             <button class="btn btn-block btn-default" ng-click="ctrl.reset()">Previous</button>
+         </div>-->
+        <div class="col-xs-3">
+            <button class="btn btn-block btn-primary" ng-click="ctrl.submit()">Next</button>
+        </div>
+    </div>
+</form>

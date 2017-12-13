@@ -1,0 +1,20 @@
+{
+  "name": "sample1",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^6.1.4",
+    "body-parser": "~1.18.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "mongodb": "^2.2.33",
+    "mongoose": "^4.13.6",
+    "morgan": "~1.9.0",
+    "serve-favicon": "~2.4.5"
+  }
+}
