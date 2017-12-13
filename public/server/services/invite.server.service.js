@@ -8,14 +8,14 @@ module.exports = function (app) {
     app.get('/api/invitees', getInviteeList);
     app.put('/api/user/accept', markUserAcceptance);
 
-    /*var con = mysql.createConnection({
+    var con = mysql.createConnection({
         host: "localhost",
         user: "sneha",
         password: "abcd1234",
         database: "mlldb"
-    });*/
+    });
 	
-	var con = mysql.createConnection({
+	/*var con = mysql.createConnection({
 		//host: "localhost",
 		host: "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 		//user: "sneha",
@@ -24,7 +24,7 @@ module.exports = function (app) {
 		password: "c9le739ttx5bv8j8",
 		//database: "mlldb",
 		database: "gg0kuw6i240upzen"
-	});
+	});*/
 
     con.connect(function(err) {
         if (err) throw err;
@@ -68,33 +68,35 @@ module.exports = function (app) {
 		};
 		//JSON encode the message body for transmission
 		var jsonBody = JSON.stringify(body);
-
+        var accountId = "79dca93b-4ef4-42c5-bcb7-a5a20100a3a1";
 		/* 
 		The function below retreieves the account GUID. Only when succefful will the 
 		function proceed to them schedule the message for delivery.
 		Information is printed to screen through the use of console.log(...)
 		*/
-		api.get('/administration/users/current', function (http_code, response) {
+		/*api.get('/administration/users/current', function (http_code, response) {
 			if (http_code===200) {
 				console.log(response);
 				console.log("AccID: "+ response.AccountId);
-				var accountId = response.AccountId; //extracts account GUID from response obj
+				accountId = response.AccountId; //extracts account GUID from response obj
 				console.log("Success!  Account GUID: " + AccountId); //prints out the Account GUID
 				//Next Function sends the message
-				api.post ("/easysmtp/" + accountId, jsonBody, function (http_code, response) {
-					if (http_code===200) {
-						console.log("successful connection to EasySMTP API");
-						console.log(response);
-					}else { 
-						console.log("Oops, looks like an error on send. Status Code: " + http_code);
-						console.log("Details: " + response);
-					}
-				});
+
 			} else {
 				console.log("Oops, there was an error when trying to get the account GUID. Status Code: " + http_code);
 				console.log("Details: " + response);
 			}
-		});
+		});*/
+        api.post ("/easysmtp/" + accountId, jsonBody, function (http_code, response) {
+            if (http_code===200) {
+                console.log("successful connection to EasySMTP API");
+                console.log(response);
+            }else {
+                console.log("Oops, looks like an error on send. Status Code: " + http_code);
+                console.log("Details: " + response);
+            }
+        });
+        console.log("------------------");
     }
 
     function getInviteeList(req, res) {

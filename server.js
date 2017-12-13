@@ -52,15 +52,18 @@ app.get('/cool', function(request, response) {
 });
 
 var con = mysql.createConnection({
-    //host: "localhost",
-	host: "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-    //user: "sneha",
-    //password: "abcd1234",
-	user: "aav997830lee8hcc",
-	password: "c9le739ttx5bv8j8",
-    //database: "mlldb",
-	database: "gg0kuw6i240upzen"
+    host: "localhost",
+	user: "sneha",
+    password: "abcd1234",
+	database: "mlldb"
 });
+
+/*var con = mysql.createConnection({
+    host: "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    user: "aav997830lee8hcc",
+	password: "c9le739ttx5bv8j8",
+    database: "gg0kuw6i240upzen"
+});*/
 
 con.connect(function(err) {
     if (err) throw err;
