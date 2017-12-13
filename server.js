@@ -3,6 +3,7 @@ var app = express();
 var http = require('http');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
+var cool = require('cool-ascii-faces');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -46,10 +47,17 @@ app.post('/email', function(req, res) {
     sgMail.send(msg);
 });
 
+app.get('/cool', function(request, response) {
+  response.send(cool());
+});
+
 var con = mysql.createConnection({
-    host: "localhost",
-    user: "sneha",
-    password: "abcd1234",
+    //host: "localhost",
+	host: "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+    //user: "sneha",
+    //password: "abcd1234",
+	user: "aav997830lee8hcc",
+	password: "c9le739ttx5bv8j8",
     database: "mlldb"
 });
 
