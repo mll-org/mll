@@ -58,7 +58,8 @@ var con = mysql.createConnection({
     //password: "abcd1234",
 	user: "aav997830lee8hcc",
 	password: "c9le739ttx5bv8j8",
-    database: "mlldb"
+    //database: "mlldb",
+	database: "gg0kuw6i240upzen"
 });
 
 con.connect(function(err) {
