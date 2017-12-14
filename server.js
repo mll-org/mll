@@ -29,7 +29,7 @@ app.post('/email', function(req, res) {
     var musicianInvitationBody4 = "Our long term goal is to establish a student-run music licensing program so students can place great independent music in movies, television shows, video games and commercials. However, we’re not even close to launching the Licensing Program, so for now, we’re just trying to gather some great music into our library for NU students to work with.";
     var musicianInvitationBody5 = "Before we actually launch the Music Licensing Program, we’ll ask you if you want to be included. Participation in the Music Licensing Program will be voluntary and non-exclusive and you will retain all rights in your music. If you do decide to participate in the Music Licensing Program, you will be free to withdraw at any time.";
     var musicianInvitationBody6 = "Please click on the link below to participate in the ML-Lab and upload your music into our Library. Please let me know if you have any comments or questions and don’t forget to give us your feedback about your experience with the Platform.";
-    const msg = {
+ /*   const msg = {
         to: req.body.to,
         from: 'lakshmisha.s@husky.neu.edu',
         subject: 'Invite to MLL App',
@@ -44,7 +44,7 @@ app.post('/email', function(req, res) {
         '<p>Thanks, Admin</p>' + '</p>'
     };
     sgMail.send(msg);
-});
+});*/
 
 /*var con = mysql.createConnection({
     host: "localhost",
