@@ -8,14 +8,14 @@ module.exports = function (app) {
     app.get('/api/invitees', getInviteeList);
     app.put('/api/user/accept', markUserAcceptance);
 
-    var con = mysql.createConnection({
+    /*var con = mysql.createConnection({
         host: "localhost",
         user: "sneha",
         password: "abcd1234",
         database: "mlldb"
-    });
+    });*/
 	
-	/*var con = mysql.createConnection({
+	var con = mysql.createConnection({
 		//host: "localhost",
 		host: "tk3mehkfmmrhjg0b.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
 		//user: "sneha",
@@ -24,7 +24,7 @@ module.exports = function (app) {
 		password: "c9le739ttx5bv8j8",
 		//database: "mlldb",
 		database: "gg0kuw6i240upzen"
-	});*/
+	});
 
     con.connect(function(err) {
         if (err) throw err;
@@ -53,17 +53,17 @@ module.exports = function (app) {
 			FromAddress: 'lakshmisha.s@husky.neu.edu',
 			Recipients: [
 			{
-				Address: 'lsneha213@gmail.com'
+				Address: user.email
 			}
 			],
 			Headers: { 
-				Subject: 'Test Subject Goes Here' , 
-				From: 'From Name <from@domain.tld>', 
-				'X-Company': 'Company Name', 
-				'X-Location': 'Your Location Header' 
+				Subject: 'Invitation to MLL App' ,
+				From: 'David Herlihy <d.herlihy@northeastern.edu>',
+				'X-Company': 'Northeastern University',
+				'X-Location': 'Boston'
 			}, 
-			BodyText: 'this is the text version of the ES API test',
-			BodyHtml: 'this is the <a href=\"http://www.google.com\">HTML</a> version of the ES API test', 
+			BodyText: "to be changed",
+			BodyHtml: "<p>" + user.messageBody + "</p>",
 			Tracking: true
 		};
 		//JSON encode the message body for transmission
